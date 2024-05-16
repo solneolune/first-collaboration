@@ -11,15 +11,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let scene = (scene as? UIWindowScene) else { return }
+        
         window = UIWindow(windowScene: scene)
-        
-        let AirQualityVM = AirQualityViewModel()
-        let AirQualityVC = AirQualityViewController(viewModel: AirQualityVM)
-        let nav = UINavigationController(rootViewController: AirQualityVC)
-        
-        window?.rootViewController = nav
+        let navigation = UINavigationController(rootViewController: TabBarController())
+        window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
 }

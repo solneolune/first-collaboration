@@ -13,6 +13,15 @@
 		03D4CE532BF69EC700FF0604 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 03D4CE522BF69EC700FF0604 /* Base */; };
 		03D4CE682BF6A0E500FF0604 /* AirQualityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE672BF6A0E500FF0604 /* AirQualityViewController.swift */; };
 		03D4CE6C2BF6A1D400FF0604 /* AirQualityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE6B2BF6A1D400FF0604 /* AirQualityViewModel.swift */; };
+		03D4CE6E2BF6A64500FF0604 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE6D2BF6A64500FF0604 /* TabBarController.swift */; };
+		03D4CE702BF6A6C500FF0604 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE6F2BF6A6C500FF0604 /* WeatherViewController.swift */; };
+		03D4CE722BF6A6CE00FF0604 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE712BF6A6CE00FF0604 /* WeatherViewModel.swift */; };
+		03D4CE742BF6A6D700FF0604 /* SpecieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE732BF6A6D700FF0604 /* SpecieViewController.swift */; };
+		03D4CE762BF6A6E000FF0604 /* SpecieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE752BF6A6E000FF0604 /* SpecieViewModel.swift */; };
+		03D4CE782BF6A6EB00FF0604 /* SolarResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE772BF6A6EB00FF0604 /* SolarResourceViewController.swift */; };
+		03D4CE7A2BF6A6F700FF0604 /* SolarResourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE792BF6A6F700FF0604 /* SolarResourceViewModel.swift */; };
+		03D4CE7C2BF6A70100FF0604 /* PopulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE7B2BF6A70100FF0604 /* PopulationViewController.swift */; };
+		03D4CE7E2BF6A70A00FF0604 /* PopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE7D2BF6A70A00FF0604 /* PopulationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +33,15 @@
 		03D4CE542BF69EC700FF0604 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03D4CE672BF6A0E500FF0604 /* AirQualityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityViewController.swift; sourceTree = "<group>"; };
 		03D4CE6B2BF6A1D400FF0604 /* AirQualityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityViewModel.swift; sourceTree = "<group>"; };
+		03D4CE6D2BF6A64500FF0604 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		03D4CE6F2BF6A6C500FF0604 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		03D4CE712BF6A6CE00FF0604 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		03D4CE732BF6A6D700FF0604 /* SpecieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewController.swift; sourceTree = "<group>"; };
+		03D4CE752BF6A6E000FF0604 /* SpecieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewModel.swift; sourceTree = "<group>"; };
+		03D4CE772BF6A6EB00FF0604 /* SolarResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourceViewController.swift; sourceTree = "<group>"; };
+		03D4CE792BF6A6F700FF0604 /* SolarResourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourceViewModel.swift; sourceTree = "<group>"; };
+		03D4CE7B2BF6A70100FF0604 /* PopulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewController.swift; sourceTree = "<group>"; };
+		03D4CE7D2BF6A70A00FF0604 /* PopulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +95,7 @@
 			children = (
 				03D4CE462BF69EC600FF0604 /* AppDelegate.swift */,
 				03D4CE482BF69EC600FF0604 /* SceneDelegate.swift */,
+				03D4CE6D2BF6A64500FF0604 /* TabBarController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -130,6 +149,8 @@
 		03D4CE632BF6A05500FF0604 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				03D4CE6F2BF6A6C500FF0604 /* WeatherViewController.swift */,
+				03D4CE712BF6A6CE00FF0604 /* WeatherViewModel.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -137,6 +158,8 @@
 		03D4CE642BF6A05A00FF0604 /* Specie */ = {
 			isa = PBXGroup;
 			children = (
+				03D4CE732BF6A6D700FF0604 /* SpecieViewController.swift */,
+				03D4CE752BF6A6E000FF0604 /* SpecieViewModel.swift */,
 			);
 			path = Specie;
 			sourceTree = "<group>";
@@ -144,6 +167,8 @@
 		03D4CE652BF6A06800FF0604 /* SolarResource */ = {
 			isa = PBXGroup;
 			children = (
+				03D4CE772BF6A6EB00FF0604 /* SolarResourceViewController.swift */,
+				03D4CE792BF6A6F700FF0604 /* SolarResourceViewModel.swift */,
 			);
 			path = SolarResource;
 			sourceTree = "<group>";
@@ -151,6 +176,8 @@
 		03D4CE662BF6A06E00FF0604 /* Population */ = {
 			isa = PBXGroup;
 			children = (
+				03D4CE7B2BF6A70100FF0604 /* PopulationViewController.swift */,
+				03D4CE7D2BF6A70A00FF0604 /* PopulationViewModel.swift */,
 			);
 			path = Population;
 			sourceTree = "<group>";
@@ -226,8 +253,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				03D4CE472BF69EC600FF0604 /* AppDelegate.swift in Sources */,
+				03D4CE702BF6A6C500FF0604 /* WeatherViewController.swift in Sources */,
 				03D4CE6C2BF6A1D400FF0604 /* AirQualityViewModel.swift in Sources */,
+				03D4CE722BF6A6CE00FF0604 /* WeatherViewModel.swift in Sources */,
+				03D4CE7A2BF6A6F700FF0604 /* SolarResourceViewModel.swift in Sources */,
 				03D4CE682BF6A0E500FF0604 /* AirQualityViewController.swift in Sources */,
+				03D4CE742BF6A6D700FF0604 /* SpecieViewController.swift in Sources */,
+				03D4CE7C2BF6A70100FF0604 /* PopulationViewController.swift in Sources */,
+				03D4CE782BF6A6EB00FF0604 /* SolarResourceViewController.swift in Sources */,
+				03D4CE762BF6A6E000FF0604 /* SpecieViewModel.swift in Sources */,
+				03D4CE7E2BF6A70A00FF0604 /* PopulationViewModel.swift in Sources */,
+				03D4CE6E2BF6A64500FF0604 /* TabBarController.swift in Sources */,
 				03D4CE492BF69EC600FF0604 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,15 +1,14 @@
 //
-//  AirQualityViewController.swift
+//  SolarResourceViewController.swift
 //  Collaboration
 //
 //  Created by Barbare Tepnadze on 17.05.24.
 //
-
 import UIKit
 
-class AirQualityViewController: UIViewController {
+class SolarResourceViewController: UIViewController {
     // MARK: - Variables
-    var viewModel: AirQualityViewModel
+    var viewModel: SolarResourceViewModel
     
     // MARK: - UI Components
     
@@ -19,10 +18,10 @@ class AirQualityViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setupData()
-        view.backgroundColor = .red
+        view.backgroundColor = .orange
     }
     
-    init(viewModel: AirQualityViewModel) {
+    init(viewModel: SolarResourceViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

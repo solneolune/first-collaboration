@@ -1,15 +1,14 @@
 //
-//  AirQualityViewController.swift
+//  SpecieViewController.swift
 //  Collaboration
 //
 //  Created by Barbare Tepnadze on 17.05.24.
 //
-
 import UIKit
 
-class AirQualityViewController: UIViewController {
+class SpecieViewController: UIViewController {
     // MARK: - Variables
-    var viewModel: AirQualityViewModel
+    var viewModel: SpecieViewModel
     
     // MARK: - UI Components
     
@@ -19,10 +18,10 @@ class AirQualityViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setupData()
-        view.backgroundColor = .red
+        view.backgroundColor = .yellow
     }
     
-    init(viewModel: AirQualityViewModel) {
+    init(viewModel: SpecieViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
