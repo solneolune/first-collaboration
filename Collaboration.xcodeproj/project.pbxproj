@@ -22,6 +22,7 @@
 		03D4CE7A2BF6A6F700FF0604 /* SolarResourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE792BF6A6F700FF0604 /* SolarResourceViewModel.swift */; };
 		03D4CE7C2BF6A70100FF0604 /* PopulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE7B2BF6A70100FF0604 /* PopulationViewController.swift */; };
 		03D4CE7E2BF6A70A00FF0604 /* PopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE7D2BF6A70A00FF0604 /* PopulationViewModel.swift */; };
+		03D4CE812BF6AC9F00FF0604 /* BarbareDoesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 03D4CE802BF6AC9F00FF0604 /* BarbareDoesNetworking */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D4CE812BF6AC9F00FF0604 /* BarbareDoesNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +200,9 @@
 			dependencies = (
 			);
 			name = Collaboration;
+			packageProductDependencies = (
+				03D4CE802BF6AC9F00FF0604 /* BarbareDoesNetworking */,
+			);
 			productName = Collaboration;
 			productReference = 03D4CE432BF69EC600FF0604 /* Collaboration.app */;
 			productType = "com.apple.product-type.application";
@@ -226,6 +231,9 @@
 				Base,
 			);
 			mainGroup = 03D4CE3A2BF69EC600FF0604;
+			packageReferences = (
+				03D4CE7F2BF6AC9F00FF0604 /* XCRemoteSwiftPackageReference "BarbareDoesNetworking" */,
+			);
 			productRefGroup = 03D4CE442BF69EC600FF0604 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -477,6 +485,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03D4CE7F2BF6AC9F00FF0604 /* XCRemoteSwiftPackageReference "BarbareDoesNetworking" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/solneolune/BarbareDoesNetworking.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		03D4CE802BF6AC9F00FF0604 /* BarbareDoesNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03D4CE7F2BF6AC9F00FF0604 /* XCRemoteSwiftPackageReference "BarbareDoesNetworking" */;
+			productName = BarbareDoesNetworking;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 03D4CE3B2BF69EC600FF0604 /* Project object */;
 }
