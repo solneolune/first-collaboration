@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		035483B32BF7498400BE1FEB /* SolarResourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483B22BF7498400BE1FEB /* SolarResourceModel.swift */; };
 		03D4CE472BF69EC600FF0604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE462BF69EC600FF0604 /* AppDelegate.swift */; };
 		03D4CE492BF69EC600FF0604 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE482BF69EC600FF0604 /* SceneDelegate.swift */; };
 		03D4CE502BF69EC700FF0604 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03D4CE4F2BF69EC700FF0604 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		035483B22BF7498400BE1FEB /* SolarResourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourceModel.swift; sourceTree = "<group>"; };
 		03D4CE432BF69EC600FF0604 /* Collaboration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collaboration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03D4CE462BF69EC600FF0604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03D4CE482BF69EC600FF0604 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				03D4CE772BF6A6EB00FF0604 /* SolarResourceViewController.swift */,
 				03D4CE792BF6A6F700FF0604 /* SolarResourceViewModel.swift */,
+				035483B22BF7498400BE1FEB /* SolarResourceModel.swift */,
 			);
 			path = SolarResource;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03D4CE472BF69EC600FF0604 /* AppDelegate.swift in Sources */,
+				035483B32BF7498400BE1FEB /* SolarResourceModel.swift in Sources */,
 				03D4CE702BF6A6C500FF0604 /* WeatherViewController.swift in Sources */,
 				03D4CE6C2BF6A1D400FF0604 /* AirQualityViewModel.swift in Sources */,
 				03D4CE722BF6A6CE00FF0604 /* WeatherViewModel.swift in Sources */,
