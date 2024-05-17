@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		035483B32BF7498400BE1FEB /* SolarResourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483B22BF7498400BE1FEB /* SolarResourceModel.swift */; };
+		035483B82BF7520B00BE1FEB /* CustomInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483B72BF7520B00BE1FEB /* CustomInput.swift */; };
+		035483BA2BF7524700BE1FEB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483B92BF7524700BE1FEB /* CustomButton.swift */; };
 		03D4CE472BF69EC600FF0604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE462BF69EC600FF0604 /* AppDelegate.swift */; };
 		03D4CE492BF69EC600FF0604 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE482BF69EC600FF0604 /* SceneDelegate.swift */; };
 		03D4CE502BF69EC700FF0604 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03D4CE4F2BF69EC700FF0604 /* Assets.xcassets */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		035483B22BF7498400BE1FEB /* SolarResourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourceModel.swift; sourceTree = "<group>"; };
+		035483B72BF7520B00BE1FEB /* CustomInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInput.swift; sourceTree = "<group>"; };
+		035483B92BF7524700BE1FEB /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		03D4CE432BF69EC600FF0604 /* Collaboration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collaboration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03D4CE462BF69EC600FF0604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03D4CE482BF69EC600FF0604 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		035483B42BF7518A00BE1FEB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				035483B72BF7520B00BE1FEB /* CustomInput.swift */,
+				035483B92BF7524700BE1FEB /* CustomButton.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		03D4CE3A2BF69EC600FF0604 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +98,7 @@
 				03D4CE5B2BF69F4300FF0604 /* App */,
 				03D4CE5E2BF69F7400FF0604 /* Scenes */,
 				03D4CE5D2BF69F5400FF0604 /* Assets */,
+				035483B42BF7518A00BE1FEB /* Shared */,
 				03D4CE5A2BF69F1C00FF0604 /* Resources */,
 			);
 			path = Collaboration;
@@ -175,6 +191,7 @@
 			children = (
 				03D4CE772BF6A6EB00FF0604 /* SolarResourceViewController.swift */,
 				03D4CE792BF6A6F700FF0604 /* SolarResourceViewModel.swift */,
+				035483B22BF7498400BE1FEB /* SolarResourceModel.swift */,
 			);
 			path = SolarResource;
 			sourceTree = "<group>";
@@ -268,16 +285,19 @@
 			files = (
 				BC1C8E542BF76A900086B0AA /* PopulationModel.swift in Sources */,
 				03D4CE472BF69EC600FF0604 /* AppDelegate.swift in Sources */,
+				035483B32BF7498400BE1FEB /* SolarResourceModel.swift in Sources */,
 				03D4CE702BF6A6C500FF0604 /* WeatherViewController.swift in Sources */,
 				03D4CE6C2BF6A1D400FF0604 /* AirQualityViewModel.swift in Sources */,
 				03D4CE722BF6A6CE00FF0604 /* WeatherViewModel.swift in Sources */,
 				03D4CE7A2BF6A6F700FF0604 /* SolarResourceViewModel.swift in Sources */,
 				BC1C8E562BF7C6C30086B0AA /* PopulationNetoworkService.swift in Sources */,
 				03D4CE682BF6A0E500FF0604 /* AirQualityViewController.swift in Sources */,
+				035483B82BF7520B00BE1FEB /* CustomInput.swift in Sources */,
 				03D4CE742BF6A6D700FF0604 /* SpecieViewController.swift in Sources */,
 				03D4CE7C2BF6A70100FF0604 /* PopulationViewController.swift in Sources */,
 				03D4CE782BF6A6EB00FF0604 /* SolarResourceViewController.swift in Sources */,
 				03D4CE762BF6A6E000FF0604 /* SpecieViewModel.swift in Sources */,
+				035483BA2BF7524700BE1FEB /* CustomButton.swift in Sources */,
 				03D4CE7E2BF6A70A00FF0604 /* PopulationViewModel.swift in Sources */,
 				03D4CE6E2BF6A64500FF0604 /* TabBarController.swift in Sources */,
 				03D4CE492BF69EC600FF0604 /* SceneDelegate.swift in Sources */,
