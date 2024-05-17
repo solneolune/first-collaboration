@@ -9,7 +9,6 @@ import UIKit
 
 class CustomCardCell: UICollectionViewCell {
     static let identifier = "CustomCardCell"
-    
     let iconImg = UIImageView()
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()

@@ -6,11 +6,14 @@
 //
 import UIKit
 
-class SolarResourceViewController: UIViewController {
+class SolarResourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Variables
     var viewModel: SolarResourceViewModel
+    var expandedRows = Set<Int>()
     
     // MARK: - UI Components
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     private let addressTextField = UITextField()
     
     private let fetchButton: UIButton = {
@@ -20,11 +23,19 @@ class SolarResourceViewController: UIViewController {
         return button
     }()
     
-    private let resultsLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: ExpandableTableViewCell.identifier)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
+    var cardsCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = false
+        return collectionView
     }()
     
     // MARK: - Lifecycle
@@ -32,7 +43,10 @@ class SolarResourceViewController: UIViewController {
         super.viewDidLoad()
         updateUI()
         setupLayout()
+        setupCollectionView()
+        initTable()
         setupData()
+        styleButton()
     }
     
     init(viewModel: SolarResourceViewModel) {
@@ -47,36 +61,65 @@ class SolarResourceViewController: UIViewController {
     // MARK: - UI Setup
     func updateUI() {
         view.backgroundColor = .systemBackground
+        tableView.isHidden = true
     }
     
     func setupLayout() {
-        initStackView()
-        initTextField()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        NSLayoutConstraint.activate([
+            // Scroll view constraints
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            // Content view constraints
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+        
+        let stackView = UIStackView(arrangedSubviews: [
+            addressTextField,
+            fetchButton,
+            tableView,
+            cardsCollection
+        ])
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 20
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            // Stack view constraints
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            
+            // Cards collection height constraint
+            cardsCollection.heightAnchor.constraint(greaterThanOrEqualToConstant: 1400)
+        ])
+        
+        styleTextField(addressTextField, placeholder: "Enter US Address")
+        
+        // TableView Constraints
+        NSLayoutConstraint.activate([
+            tableView.heightAnchor.constraint(equalToConstant: 600)
+        ])
     }
     
-    func initStackView() {
-         let stackView = UIStackView(arrangedSubviews: [
-             addressTextField,
-             fetchButton,
-             resultsLabel
-         ])
-         stackView.axis = .vertical
-         stackView.distribution = .fill
-         let screenSize = UIScreen.main.bounds.size
-         let spacing = screenSize.width < 410 ? 20 : 25
-         stackView.spacing = CGFloat(spacing)
-         stackView.translatesAutoresizingMaskIntoConstraints = false
-         view.addSubview(stackView)
-         NSLayoutConstraint.activate([
-             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-         ])
-     }
-    
-    func initTextField() {
-        styleTextField(addressTextField, placeholder: "Enter US Address")
+    func initTable() {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     func styleTextField(_ textfield: UITextField, placeholder: String) {
@@ -86,7 +129,7 @@ class SolarResourceViewController: UIViewController {
         ])
         textfield.textColor = .label
         textfield.backgroundColor = .clear
-        textfield.layer.borderColor = UIColor.label.cgColor
+        textfield.layer.borderColor = UIColor.placeholderText.cgColor
         textfield.layer.borderWidth = 1.0
         textfield.layer.cornerRadius = 9
         textfield.borderStyle = .roundedRect
@@ -94,11 +137,31 @@ class SolarResourceViewController: UIViewController {
         textfield.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
+    func styleButton() {
+        fetchButton.backgroundColor = UIColor.systemBlue
+        fetchButton.setTitle("Check", for: .normal)
+        fetchButton.setTitleColor(.white, for: .normal)
+        fetchButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: fetchButton.titleLabel?.font.pointSize ?? 17)
+        fetchButton.backgroundColor = UIColor.systemBlue
+        fetchButton.layer.cornerRadius = 10
+        fetchButton.translatesAutoresizingMaskIntoConstraints = false
+        fetchButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    }
+    
+    func setupCollectionView() {
+        cardsCollection.dataSource = self
+        cardsCollection.delegate = self
+        cardsCollection.register(CustomCardCell.self, forCellWithReuseIdentifier: CustomCardCell.identifier)
+        cardsCollection.backgroundColor = .clear
+    }
+    
     // MARK: - Helper Functions
     func setupData() {
         viewModel.dataFetched = { [weak self] data in
             DispatchQueue.main.async {
-                self?.resultsLabel.text = data
+                self?.tableView.reloadData()
+                self?.cardsCollection.reloadData()
+                self?.tableView.isHidden = false
             }
         }
     }
@@ -106,5 +169,76 @@ class SolarResourceViewController: UIViewController {
     @objc func fetchData() {
         guard let address = addressTextField.text, !address.isEmpty else { return }
         viewModel.fetchSolarData(for: address)
+    }
+    
+    @objc func reloadTable() {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    // MARK: - TableView DataSource and Delegate Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ExpandableTableViewCell.identifier, for: indexPath) as! ExpandableTableViewCell
+        guard let solarData = viewModel.solarData else {
+            return cell
+        }
+        
+        switch indexPath.row {
+        case 0:
+            cell.configure(with: "Average Direct Normal Irradiance", annualValue: solarData.avgDniAnnual, monthlyData: solarData.avgDniMonthly)
+        case 1:
+            cell.configure(with: "Average Global Horizontal Irradiance", annualValue: solarData.avgGhiAnnual, monthlyData: solarData.avgGhiMonthly)
+        case 2:
+            cell.configure(with: "Average Tilt at Latitude", annualValue: solarData.avgTiltAnnual, monthlyData: solarData.avgTiltMonthly)
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let cell = tableView.cellForRow(at: indexPath) as? ExpandableTableViewCell else {
+            return UITableView.automaticDimension
+        }
+        return cell.isExpanded ? 400 : 60
+    }
+}
+
+// MARK: - Extensions for CollectionView
+extension SolarResourceViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return solarResourceInfoCards.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCardCell.identifier, for: indexPath) as! CustomCardCell
+        let card = solarResourceInfoCards[indexPath.item]
+        cell.configure(with: card)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat = 16
+        let collectionViewWidth = collectionView.frame.width
+        let itemWidth = collectionViewWidth - 2 * padding
+        return CGSize(width: itemWidth, height: 400)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let padding: CGFloat = 16
+        return UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
     }
 }
