@@ -17,29 +17,27 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTabs()
     }
     
     private func configureTabs() {
-        
-        
         //setup images
-        airQualityVC.tabBarItem.image = UIImage(systemName: "house")
-        airQualityVC.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
+        airQualityVC.tabBarItem.image = UIImage(systemName: "aqi.low")
+        airQualityVC.tabBarItem.selectedImage = UIImage(systemName: "aqi.medium")
         
-        weatherVC.tabBarItem.image = UIImage(systemName: "cart")
-        weatherVC.tabBarItem.selectedImage = UIImage(systemName: "cart.fill")?.withRenderingMode(.alwaysOriginal)
+        weatherVC.tabBarItem.image = UIImage(systemName: "cloud.sun")
+        weatherVC.tabBarItem.selectedImage = UIImage(systemName: "cloud.sun.fill")?.withRenderingMode(.alwaysTemplate)
         
-        specieVC.tabBarItem.image = UIImage(systemName: "person")
-        specieVC.tabBarItem.selectedImage = UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysOriginal)
+        specieVC.tabBarItem.image = UIImage(systemName: "leaf")
+        specieVC.tabBarItem.selectedImage = UIImage(systemName: "leaf.fill")?.withRenderingMode(.alwaysTemplate)
         
-        solarResourceVC.tabBarItem.image = UIImage(systemName: "cart")
-        solarResourceVC.tabBarItem.selectedImage = UIImage(systemName: "cart.fill")?.withRenderingMode(.alwaysOriginal)
+        solarResourceVC.tabBarItem.image = UIImage(systemName: "sun.max")
+        solarResourceVC.tabBarItem.selectedImage = UIImage(systemName: "sun.max.fill")?.withRenderingMode(.alwaysTemplate)
         
-        populationVC.tabBarItem.image = UIImage(systemName: "person")
-        populationVC.tabBarItem.selectedImage = UIImage(systemName: "person.fill")?.withRenderingMode(.alwaysOriginal)
+        populationVC.tabBarItem.image = UIImage(systemName: "person.3")
+        populationVC.tabBarItem.selectedImage = UIImage(systemName: "person.3.fill")?.withRenderingMode(.alwaysTemplate)
         
+
         //setup title
 //        airQualityVC.title = "Air Quality"
 //        weatherVC.title = "Weather"
@@ -53,11 +51,8 @@ class TabBarController: UITabBarController {
         let nav4 = UINavigationController(rootViewController: solarResourceVC)
         let nav5 = UINavigationController(rootViewController: populationVC)
         
-        tabBar.tintColor = UIColor(red: 172/255, green: 126/255, blue: 242/255, alpha: 1.0)
-        tabBar.backgroundColor = .white
-        
-        tabBar.layer.borderWidth = 1.0
-        tabBar.layer.borderColor = UIColor(red: 217/255, green: 208/255, blue: 227/255, alpha: 1.0).cgColor
+        tabBar.tintColor = .systemGray
+        tabBar.backgroundColor = .systemGray6
         
         setViewControllers([nav1, nav2, nav3, nav4, nav5], animated: true)
     }
