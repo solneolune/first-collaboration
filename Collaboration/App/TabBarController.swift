@@ -9,6 +9,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
     // MARK: - Variables
+    
     let airQualityVC = AirQualityViewController(viewModel: AirQualityViewModel())
     let weatherVC = WeatherViewController(viewModel: WeatherViewModel())
     let specieVC = SpecieViewController(viewModel: SpecieViewModel())
