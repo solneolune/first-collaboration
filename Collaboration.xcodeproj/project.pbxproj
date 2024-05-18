@@ -28,6 +28,7 @@
 		03D4CE812BF6AC9F00FF0604 /* BarbareDoesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 03D4CE802BF6AC9F00FF0604 /* BarbareDoesNetworking */; };
 		BC1C8E542BF76A900086B0AA /* PopulationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1C8E532BF76A900086B0AA /* PopulationModel.swift */; };
 		BC1C8E562BF7C6C30086B0AA /* PopulationNetoworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1C8E552BF7C6C30086B0AA /* PopulationNetoworkService.swift */; };
+		BC7DD01C2BF91B9400749C41 /* LongLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7DD01B2BF91B9400749C41 /* LongLayoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		03D4CE7D2BF6A70A00FF0604 /* PopulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewModel.swift; sourceTree = "<group>"; };
 		BC1C8E532BF76A900086B0AA /* PopulationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationModel.swift; sourceTree = "<group>"; };
 		BC1C8E552BF7C6C30086B0AA /* PopulationNetoworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationNetoworkService.swift; sourceTree = "<group>"; };
+		BC7DD01B2BF91B9400749C41 /* LongLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongLayoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,12 +201,21 @@
 		03D4CE662BF6A06E00FF0604 /* Population */ = {
 			isa = PBXGroup;
 			children = (
+				BC7DD01A2BF91B7000749C41 /* Views */,
 				03D4CE7B2BF6A70100FF0604 /* PopulationViewController.swift */,
 				03D4CE7D2BF6A70A00FF0604 /* PopulationViewModel.swift */,
 				BC1C8E532BF76A900086B0AA /* PopulationModel.swift */,
 				BC1C8E552BF7C6C30086B0AA /* PopulationNetoworkService.swift */,
 			);
 			path = Population;
+			sourceTree = "<group>";
+		};
+		BC7DD01A2BF91B7000749C41 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC7DD01B2BF91B9400749C41 /* LongLayoutView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC1C8E542BF76A900086B0AA /* PopulationModel.swift in Sources */,
+				BC7DD01C2BF91B9400749C41 /* LongLayoutView.swift in Sources */,
 				03D4CE472BF69EC600FF0604 /* AppDelegate.swift in Sources */,
 				035483B32BF7498400BE1FEB /* SolarResourceModel.swift in Sources */,
 				03D4CE702BF6A6C500FF0604 /* WeatherViewController.swift in Sources */,
