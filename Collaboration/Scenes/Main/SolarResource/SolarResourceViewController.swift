@@ -16,20 +16,9 @@ class SolarResourceViewController: UIViewController {
     private let contentView = UIView()
     private let addressTextField = UITextField()
     
-    private let fetchButton: CustomButton = {
-        let button = CustomButton(title: "Fetch Data", backgroundColor: .systemBlue, setTitleColor: .systemBackground)
-        button.addTarget(self, action: #selector(fetchData), for: .touchUpInside)
-        return button
-    }()
+    private let fetchButton = CustomButton(title: "Fetch Data", backgroundColor: .systemBlue, setTitleColor: .systemBackground)
     
-    private let tableContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 10
-        view.clipsToBounds = true
-        view.isHidden = true
-        return view
-    }()
+    private let tableContainerView = UIView()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -56,6 +45,8 @@ class SolarResourceViewController: UIViewController {
         setupLayout()
         setupCollectionView()
         initTable()
+        styleTableContainerView()
+        initButton()
         setupData()
         observeTableViewContentSize()
         observeCollectionViewContentSize()
@@ -137,6 +128,13 @@ class SolarResourceViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    func styleTableContainerView() {
+        tableContainerView.translatesAutoresizingMaskIntoConstraints = false
+        tableContainerView.layer.cornerRadius = 10
+        tableContainerView.clipsToBounds = true
+        tableContainerView.isHidden = true
+    }
+    
     func styleTextField(_ textfield: UITextField, placeholder: String) {
         textfield.placeholder = placeholder
         textfield.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
@@ -182,10 +180,16 @@ class SolarResourceViewController: UIViewController {
         cardsCollectionHeightConstraint.constant = collectionContentHeight
     }
     
-    @objc func fetchData() {
-        guard let address = addressTextField.text, !address.isEmpty else { return }
-        viewModel.fetchSolarData(for: address)
+    func initButton() {
+        fetchButton.addAction(fetchDataAction(), for: .touchUpInside)
     }
+    
+    func fetchDataAction() -> UIAction {
+           return UIAction { [weak self] _ in
+               guard let address = self?.addressTextField.text, !address.isEmpty else { return }
+               self?.viewModel.fetchSolarData(for: address)
+           }
+       }
     
     func observeTableViewContentSize() {
         tableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)

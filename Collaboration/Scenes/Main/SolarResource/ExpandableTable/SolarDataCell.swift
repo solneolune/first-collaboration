@@ -84,7 +84,6 @@ class SolarDataCell: UITableViewCell {
         descriptionBottomConstraint.priority = .required
         descriptionBottomConstraint.isActive = isExpanded
         
-        // Ensure a minimum height when not expanded
         if !isExpanded {
             contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 60).isActive = true
         }
