@@ -116,7 +116,7 @@ class AirQualityViewController: UIViewController {
         bindViewModel()
         setupUI()
 
-        title = "Air Pollution"
+//        title = "Air Pollution"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
