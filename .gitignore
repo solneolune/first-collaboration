@@ -89,6 +89,9 @@ fastlane/test_output
 
 iOSInjectionProject/
 .DS_Store
+<<<<<<< HEAD
 Collaboration/.DS_Store
 Collaboration/Scenes/.DS_Store
 Collaboration/Scenes/Main/.DS_Store
+=======
+>>>>>>> b67f4580308f899d508cc37792251f2cca1b06bf
