@@ -10,14 +10,15 @@ import UIKit
 class CustomButton: UIButton {
 
     // Custom initializer
-    init(title: String, backgroundColor: UIColor) {
+    init(title: String, backgroundColor: UIColor, setTitleColor: UIColor) {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
-        self.setTitleColor(.white, for: .normal)
+        self.setTitleColor(setTitleColor, for: .normal)
         self.layer.cornerRadius = 10
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
     required init?(coder: NSCoder) {
@@ -25,8 +26,9 @@ class CustomButton: UIButton {
     }
 
     // Method to update button title and background color
-    func update(title: String, backgroundColor: UIColor) {
+    func update(title: String, backgroundColor: UIColor, setTitleColor: UIColor) {
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
+        self.setTitleColor(setTitleColor, for: .normal)
     }
 }
