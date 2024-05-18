@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03533FA92BF8CA3400DF924D /* SolarDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03533FA82BF8CA3400DF924D /* SolarDataCell.swift */; };
 		035483B32BF7498400BE1FEB /* SolarResourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483B22BF7498400BE1FEB /* SolarResourceModel.swift */; };
 		035483B82BF7520B00BE1FEB /* CustomInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483B72BF7520B00BE1FEB /* CustomInput.swift */; };
 		035483BA2BF7524700BE1FEB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483B92BF7524700BE1FEB /* CustomButton.swift */; };
-		035483D22BF7D83800BE1FEB /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483CC2BF7D83700BE1FEB /* ExpandableTableViewCell.swift */; };
 		035483D42BF7D83800BE1FEB /* CustomCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483CE2BF7D83800BE1FEB /* CustomCardCell.swift */; };
 		035483D52BF7D83800BE1FEB /* CustomCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483CF2BF7D83800BE1FEB /* CustomCardModel.swift */; };
 		035483D72BF7D8AC00BE1FEB /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035483D62BF7D8AC00BE1FEB /* UIColor.swift */; };
@@ -35,10 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03533FA82BF8CA3400DF924D /* SolarDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarDataCell.swift; sourceTree = "<group>"; };
 		035483B22BF7498400BE1FEB /* SolarResourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarResourceModel.swift; sourceTree = "<group>"; };
 		035483B72BF7520B00BE1FEB /* CustomInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInput.swift; sourceTree = "<group>"; };
 		035483B92BF7524700BE1FEB /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		035483CC2BF7D83700BE1FEB /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		035483CE2BF7D83800BE1FEB /* CustomCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCardCell.swift; sourceTree = "<group>"; };
 		035483CF2BF7D83800BE1FEB /* CustomCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCardModel.swift; sourceTree = "<group>"; };
 		035483D62BF7D8AC00BE1FEB /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -75,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03533FA72BF8CA2500DF924D /* ExpandableTable */ = {
+			isa = PBXGroup;
+			children = (
+				03533FA82BF8CA3400DF924D /* SolarDataCell.swift */,
+			);
+			path = ExpandableTable;
+			sourceTree = "<group>";
+		};
 		035483B42BF7518A00BE1FEB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,12 +205,12 @@
 		03D4CE652BF6A06800FF0604 /* SolarResource */ = {
 			isa = PBXGroup;
 			children = (
+				03533FA72BF8CA2500DF924D /* ExpandableTable */,
 				035483CE2BF7D83800BE1FEB /* CustomCardCell.swift */,
 				035483CF2BF7D83800BE1FEB /* CustomCardModel.swift */,
 				035483D62BF7D8AC00BE1FEB /* UIColor.swift */,
 				035483DA2BF7D8B400BE1FEB /* SolarResourceData.swift */,
 				035483D82BF7D8B200BE1FEB /* IconEnums.swift */,
-				035483CC2BF7D83700BE1FEB /* ExpandableTableViewCell.swift */,
 				03D4CE772BF6A6EB00FF0604 /* SolarResourceViewController.swift */,
 				03D4CE792BF6A6F700FF0604 /* SolarResourceViewModel.swift */,
 				035483B22BF7498400BE1FEB /* SolarResourceModel.swift */,
@@ -302,6 +310,7 @@
 				03D4CE702BF6A6C500FF0604 /* WeatherViewController.swift in Sources */,
 				03D4CE6C2BF6A1D400FF0604 /* AirQualityViewModel.swift in Sources */,
 				03D4CE722BF6A6CE00FF0604 /* WeatherViewModel.swift in Sources */,
+				03533FA92BF8CA3400DF924D /* SolarDataCell.swift in Sources */,
 				035483DB2BF7D8B400BE1FEB /* SolarResourceData.swift in Sources */,
 				03D4CE7A2BF6A6F700FF0604 /* SolarResourceViewModel.swift in Sources */,
 				03D4CE682BF6A0E500FF0604 /* AirQualityViewController.swift in Sources */,
@@ -311,7 +320,6 @@
 				03D4CE7C2BF6A70100FF0604 /* PopulationViewController.swift in Sources */,
 				035483D42BF7D83800BE1FEB /* CustomCardCell.swift in Sources */,
 				03D4CE782BF6A6EB00FF0604 /* SolarResourceViewController.swift in Sources */,
-				035483D22BF7D83800BE1FEB /* ExpandableTableViewCell.swift in Sources */,
 				03D4CE762BF6A6E000FF0604 /* SpecieViewModel.swift in Sources */,
 				035483BA2BF7524700BE1FEB /* CustomButton.swift in Sources */,
 				03D4CE7E2BF6A70A00FF0604 /* PopulationViewModel.swift in Sources */,

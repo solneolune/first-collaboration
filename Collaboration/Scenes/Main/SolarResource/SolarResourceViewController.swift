@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class SolarResourceViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SolarResourceViewController: UIViewController {
     // MARK: - Variables
     var viewModel: SolarResourceViewModel
     var expandedRows = Set<Int>()
@@ -23,9 +23,18 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
         return button
     }()
     
+    private let tableContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+        view.isHidden = true
+        return view
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(ExpandableTableViewCell.self, forCellReuseIdentifier: ExpandableTableViewCell.identifier)
+        tableView.register(SolarDataCell.self, forCellReuseIdentifier: SolarDataCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -38,6 +47,9 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
         return collectionView
     }()
     
+    private var tableContainerHeightConstraint: NSLayoutConstraint!
+    private var cardsCollectionHeightConstraint: NSLayoutConstraint!
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +59,8 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
         initTable()
         setupData()
         styleButton()
+        observeTableViewContentSize()
+        observeCollectionViewContentSize()
     }
     
     init(viewModel: SolarResourceViewModel) {
@@ -60,8 +74,7 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
     
     // MARK: - UI Setup
     func updateUI() {
-        view.backgroundColor = .systemBackground
-        tableView.isHidden = true
+        view.backgroundColor = .systemGray6
     }
     
     func setupLayout() {
@@ -70,15 +83,15 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(tableContainerView)
+        tableContainerView.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            // Scroll view constraints
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            // Content view constraints
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
@@ -89,7 +102,7 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
         let stackView = UIStackView(arrangedSubviews: [
             addressTextField,
             fetchButton,
-            tableView,
+            tableContainerView,
             cardsCollection
         ])
         stackView.axis = .vertical
@@ -99,21 +112,25 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
         contentView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            // Stack view constraints
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            
-            // Cards collection height constraint
-            cardsCollection.heightAnchor.constraint(greaterThanOrEqualToConstant: 1400)
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
         ])
         
         styleTextField(addressTextField, placeholder: "Enter US Address")
         
-        // TableView Constraints
+        tableContainerHeightConstraint = tableContainerView.heightAnchor.constraint(equalToConstant: 0)
+        tableContainerHeightConstraint.isActive = true
+        
+        cardsCollectionHeightConstraint = cardsCollection.heightAnchor.constraint(equalToConstant: 0)
+        cardsCollectionHeightConstraint.isActive = true
+        
         NSLayoutConstraint.activate([
-            tableView.heightAnchor.constraint(equalToConstant: 600)
+            tableView.leadingAnchor.constraint(equalTo: tableContainerView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: tableContainerView.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: tableContainerView.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: tableContainerView.bottomAnchor)
         ])
     }
     
@@ -128,7 +145,7 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
             .font: UIFont(name: "FiraGO-Medium", size: 12) ?? UIFont.systemFont(ofSize: 12, weight: .medium)
         ])
         textfield.textColor = .label
-        textfield.backgroundColor = .clear
+        textfield.backgroundColor = .systemBackground
         textfield.layer.borderColor = UIColor.placeholderText.cgColor
         textfield.layer.borderWidth = 1.0
         textfield.layer.cornerRadius = 9
@@ -142,7 +159,6 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
         fetchButton.setTitle("Check", for: .normal)
         fetchButton.setTitleColor(.white, for: .normal)
         fetchButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: fetchButton.titleLabel?.font.pointSize ?? 17)
-        fetchButton.backgroundColor = UIColor.systemBlue
         fetchButton.layer.cornerRadius = 10
         fetchButton.translatesAutoresizingMaskIntoConstraints = false
         fetchButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
@@ -161,9 +177,21 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
                 self?.cardsCollection.reloadData()
-                self?.tableView.isHidden = false
+                self?.tableContainerView.isHidden = false
+                self?.updateTableContainerHeight()
+                self?.updateCollectionViewHeight()
             }
         }
+    }
+    
+    func updateTableContainerHeight() {
+        let tableContentHeight = tableView.contentSize.height
+        tableContainerHeightConstraint.constant = tableContentHeight
+    }
+    
+    func updateCollectionViewHeight() {
+        let collectionContentHeight = cardsCollection.collectionViewLayout.collectionViewContentSize.height
+        cardsCollectionHeightConstraint.constant = collectionContentHeight
     }
     
     @objc func fetchData() {
@@ -171,46 +199,90 @@ class SolarResourceViewController: UIViewController, UITableViewDelegate, UITabl
         viewModel.fetchSolarData(for: address)
     }
     
-    @objc func reloadTable() {
-        tableView.beginUpdates()
-        tableView.endUpdates()
+    func observeTableViewContentSize() {
+        tableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
     }
     
-    // MARK: - TableView DataSource and Delegate Methods
+    func observeCollectionViewContentSize() {
+        cardsCollection.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            if object as? UITableView == tableView {
+                updateTableContainerHeight()
+            } else if object as? UICollectionView == cardsCollection {
+                updateCollectionViewHeight()
+            }
+        }
+    }
+    
+    deinit {
+        tableView.removeObserver(self, forKeyPath: "contentSize")
+        cardsCollection.removeObserver(self, forKeyPath: "contentSize")
+    }
+}
+
+// MARK: - Extension for TableView
+extension SolarResourceViewController: UITableViewDataSource, UITableViewDelegate {
+    // MARK: - UITableView DataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ExpandableTableViewCell.identifier, for: indexPath) as! ExpandableTableViewCell
-        guard let solarData = viewModel.solarData else {
-            return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SolarDataCell.identifier, for: indexPath) as? SolarDataCell else {
+            return UITableViewCell()
         }
+        
+        guard let solarData = viewModel.solarData else { return cell }
+        
+        var title = ""
+        var value = ""
+        var description = ""
         
         switch indexPath.row {
         case 0:
-            cell.configure(with: "Average Direct Normal Irradiance", annualValue: solarData.avgDniAnnual, monthlyData: solarData.avgDniMonthly)
+            title = "Average Direct Normal Irradiance"
+            value = "\(solarData.avgDniAnnual)"
+            description = solarData.avgDniMonthly.map { "\($0.key): \($0.value)" }.joined(separator: "\n")
         case 1:
-            cell.configure(with: "Average Global Horizontal Irradiance", annualValue: solarData.avgGhiAnnual, monthlyData: solarData.avgGhiMonthly)
+            title = "Average Global Horizontal Irradiance"
+            value = "\(solarData.avgGhiAnnual)"
+            description = solarData.avgGhiMonthly.map { "\($0.key): \($0.value)" }.joined(separator: "\n")
         case 2:
-            cell.configure(with: "Average Tilt at Latitude", annualValue: solarData.avgTiltAnnual, monthlyData: solarData.avgTiltMonthly)
+            title = "Average Tilt at Latitude"
+            value = "\(solarData.avgTiltAnnual)"
+            description = solarData.avgTiltMonthly.map { "\($0.key): \($0.value)" }.joined(separator: "\n")
         default:
             break
         }
         
+        cell.configure(withTitle: title, value: value, description: description)
+        cell.isExpanded = expandedRows.contains(indexPath.row)
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ExpandableTableViewCell else {
-            return UITableView.automaticDimension
+    // MARK: - UITableView Delegate Methods
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if expandedRows.contains(indexPath.row) {
+            expandedRows.remove(indexPath.row)
+        } else {
+            expandedRows.insert(indexPath.row)
         }
-        return cell.isExpanded ? 400 : 60
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return expandedRows.contains(indexPath.row) ? UITableView.automaticDimension : 50
     }
 }
 
-// MARK: - Extensions for CollectionView
+// MARK: - Extension for CollectionView
 extension SolarResourceViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    // MARK: - UICollectionViewDataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return solarResourceInfoCards.count
     }
@@ -222,10 +294,10 @@ extension SolarResourceViewController: UICollectionViewDataSource, UICollectionV
         return cell
     }
     
+    // MARK: - UICollectionViewDelegateFlowLayout Methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 16
         let collectionViewWidth = collectionView.frame.width
-        let itemWidth = collectionViewWidth - 2 * padding
+        let itemWidth = collectionViewWidth
         return CGSize(width: itemWidth, height: 400)
     }
     

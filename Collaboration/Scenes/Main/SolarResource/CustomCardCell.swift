@@ -37,16 +37,19 @@ class CustomCardCell: UICollectionViewCell {
     }
     
     func styleCard() {
-        contentView.backgroundColor = .clear
-        contentView.layer.cornerRadius = 12
+        contentView.backgroundColor = .systemBackground
+        contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
-        contentView.layer.borderColor = UIColor.label.cgColor
-        contentView.layer.borderWidth = 1
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.1
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        contentView.layer.shadowRadius = 4
     }
     
     func styleIcon() {
         iconImg.contentMode = .scaleAspectFit
         iconImg.clipsToBounds = true
+        iconImg.tintColor = UIColor.systemYellow
         iconImg.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(iconImg)
         NSLayoutConstraint.activate([
@@ -78,10 +81,9 @@ class CustomCardCell: UICollectionViewCell {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(descriptionLabel)
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
     }
 }
-
