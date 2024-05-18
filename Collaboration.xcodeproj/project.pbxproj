@@ -27,6 +27,8 @@
 		03D4CE7E2BF6A70A00FF0604 /* PopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D4CE7D2BF6A70A00FF0604 /* PopulationViewModel.swift */; };
 		03D4CE812BF6AC9F00FF0604 /* BarbareDoesNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 03D4CE802BF6AC9F00FF0604 /* BarbareDoesNetworking */; };
 		781CB4FB2BF79124000AADF1 /* AirQualityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CB4FA2BF79124000AADF1 /* AirQualityModel.swift */; };
+		781CB4FD2BF7FD55000AADF1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CB4FC2BF7FD55000AADF1 /* UIColor.swift */; };
+		781CB4FF2BF81A59000AADF1 /* TextResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CB4FE2BF81A59000AADF1 /* TextResources.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		03D4CE7B2BF6A70100FF0604 /* PopulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewController.swift; sourceTree = "<group>"; };
 		03D4CE7D2BF6A70A00FF0604 /* PopulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewModel.swift; sourceTree = "<group>"; };
 		781CB4FA2BF79124000AADF1 /* AirQualityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirQualityModel.swift; sourceTree = "<group>"; };
+		781CB4FC2BF7FD55000AADF1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		781CB4FE2BF81A59000AADF1 /* TextResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextResources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 				03D4CE672BF6A0E500FF0604 /* AirQualityViewController.swift */,
 				03D4CE6B2BF6A1D400FF0604 /* AirQualityViewModel.swift */,
 				781CB4FA2BF79124000AADF1 /* AirQualityModel.swift */,
+				781CB4FC2BF7FD55000AADF1 /* UIColor.swift */,
+				781CB4FE2BF81A59000AADF1 /* TextResources.swift */,
 			);
 			path = AirQuality;
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 				03D4CE6C2BF6A1D400FF0604 /* AirQualityViewModel.swift in Sources */,
 				03D4CE722BF6A6CE00FF0604 /* WeatherViewModel.swift in Sources */,
 				03D4CE7A2BF6A6F700FF0604 /* SolarResourceViewModel.swift in Sources */,
+				781CB4FF2BF81A59000AADF1 /* TextResources.swift in Sources */,
 				03D4CE682BF6A0E500FF0604 /* AirQualityViewController.swift in Sources */,
 				035483B82BF7520B00BE1FEB /* CustomInput.swift in Sources */,
 				03D4CE742BF6A6D700FF0604 /* SpecieViewController.swift in Sources */,
@@ -293,6 +300,7 @@
 				781CB4FB2BF79124000AADF1 /* AirQualityModel.swift in Sources */,
 				03D4CE782BF6A6EB00FF0604 /* SolarResourceViewController.swift in Sources */,
 				03D4CE762BF6A6E000FF0604 /* SpecieViewModel.swift in Sources */,
+				781CB4FD2BF7FD55000AADF1 /* UIColor.swift in Sources */,
 				035483BA2BF7524700BE1FEB /* CustomButton.swift in Sources */,
 				03D4CE7E2BF6A70A00FF0604 /* PopulationViewModel.swift in Sources */,
 				03D4CE6E2BF6A64500FF0604 /* TabBarController.swift in Sources */,
