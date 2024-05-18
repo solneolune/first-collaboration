@@ -45,12 +45,7 @@ class AirQualityViewController: UIViewController {
         return textField
     }()
 
-    let searchButton = CustomButton(
-        title: "Search",
-        backgroundColor: .black,
-        titleColor: .white,
-        cornerRadius: 10
-    )
+    let searchButton = CustomButton(title: "Search", backgroundColor: .label)
 
     let pollutionLabel: UILabel = {
         let label = UILabel()
