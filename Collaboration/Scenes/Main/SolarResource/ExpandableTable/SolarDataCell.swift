@@ -10,6 +10,7 @@ import UIKit
 class SolarDataCell: UITableViewCell {
     static let identifier = "SolarDataCell"
     
+    private let iconImageView = UIImageView()
     private let titleLabel = UILabel()
     private let valueLabel = UILabel()
     private let descriptionStackView = UIStackView()
@@ -18,6 +19,7 @@ class SolarDataCell: UITableViewCell {
         didSet {
             descriptionStackView.isHidden = !isExpanded
             setNeedsUpdateConstraints()
+            updateIcon()
         }
     }
     
@@ -31,6 +33,9 @@ class SolarDataCell: UITableViewCell {
     }
     
     private func setupUI() {
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(iconImageView)
+        
         titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         titleLabel.textColor = .label
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +52,12 @@ class SolarDataCell: UITableViewCell {
         contentView.addSubview(descriptionStackView)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            iconImageView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            iconImageView.widthAnchor.constraint(equalToConstant: 20),
+            iconImageView.heightAnchor.constraint(equalToConstant: 20),
+            
+            titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             
             valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
@@ -60,6 +70,12 @@ class SolarDataCell: UITableViewCell {
         ])
         
         descriptionStackView.isHidden = true
+        updateIcon()
+    }
+    
+    private func updateIcon() {
+        let iconName = isExpanded ? "minus.circle" : "plus.circle"
+        iconImageView.image = UIImage(systemName: iconName)
     }
     
     override func updateConstraints() {

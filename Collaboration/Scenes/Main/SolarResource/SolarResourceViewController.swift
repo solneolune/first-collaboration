@@ -1,3 +1,9 @@
+//
+//  SolarResourceViewController.swift
+//  Collaboration
+//
+//  Created by Barbare Tepnadze on 17.05.24.
+//
 import UIKit
 
 class SolarResourceViewController: UIViewController {
@@ -8,10 +14,10 @@ class SolarResourceViewController: UIViewController {
     // MARK: - UI Components
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let addressInputView = CustomInputView()
-
+    private let addressTextField = UITextField()
+    
     private let fetchButton: CustomButton = {
-        let button = CustomButton(title: "Fetch Data", backgroundColor: .systemBlue)
+        let button = CustomButton(title: "Fetch Data", backgroundColor: .systemBlue, setTitleColor: .systemBackground)
         button.addTarget(self, action: #selector(fetchData), for: .touchUpInside)
         return button
     }()
@@ -92,7 +98,7 @@ class SolarResourceViewController: UIViewController {
         ])
         
         let stackView = UIStackView(arrangedSubviews: [
-            addressInputView,
+            addressTextField,
             fetchButton,
             tableContainerView,
             cardsCollection
@@ -110,6 +116,8 @@ class SolarResourceViewController: UIViewController {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
         ])
         
+        styleTextField(addressTextField, placeholder: "Enter US Address")
+        
         tableContainerHeightConstraint = tableContainerView.heightAnchor.constraint(equalToConstant: 0)
         tableContainerHeightConstraint.isActive = true
         
@@ -120,16 +128,28 @@ class SolarResourceViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: tableContainerView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: tableContainerView.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: tableContainerView.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: tableContainerView.bottomAnchor),
-            
-            fetchButton.heightAnchor.constraint(equalToConstant: 45),
-            addressInputView.heightAnchor.constraint(equalToConstant: 45)
+            tableView.bottomAnchor.constraint(equalTo: tableContainerView.bottomAnchor)
         ])
     }
     
     func initTable() {
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func styleTextField(_ textfield: UITextField, placeholder: String) {
+        textfield.placeholder = placeholder
+        textfield.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
+            .font: UIFont(name: "FiraGO-Medium", size: 12) ?? UIFont.systemFont(ofSize: 12, weight: .medium)
+        ])
+        textfield.textColor = .label
+        textfield.backgroundColor = .systemBackground
+        textfield.layer.borderColor = UIColor.placeholderText.cgColor
+        textfield.layer.borderWidth = 1.0
+        textfield.layer.cornerRadius = 9
+        textfield.borderStyle = .roundedRect
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        textfield.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
     func setupCollectionView() {
@@ -163,7 +183,7 @@ class SolarResourceViewController: UIViewController {
     }
     
     @objc func fetchData() {
-        guard let address = addressInputView.text, !address.isEmpty else { return }
+        guard let address = addressTextField.text, !address.isEmpty else { return }
         viewModel.fetchSolarData(for: address)
     }
     
