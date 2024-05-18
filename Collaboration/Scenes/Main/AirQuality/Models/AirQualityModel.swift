@@ -26,7 +26,6 @@ struct DataClass: Codable {
 
 struct Current: Codable {
     let pollution: Pollution
-    let weather: Weather
 }
 
 // MARK: - Pollution
@@ -35,18 +34,6 @@ struct Pollution: Codable {
     let ts: String
     let aqius: Int
     let mainus: String
-    let aqicn: Int
-    let maincn: String
-}
-
-// MARK: - Weather
-
-struct Weather: Codable {
-    let ts: String
-    let tp, pr, hu: Int
-    let ws: Double
-    let wd: Int
-    let ic: String
 }
 
 // MARK: - Location

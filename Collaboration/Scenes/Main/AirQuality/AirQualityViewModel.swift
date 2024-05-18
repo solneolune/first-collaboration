@@ -9,20 +9,15 @@ import BarbareDoesNetworking
 import Foundation
 
 class AirQualityViewModel {
-    // MARK: - Selectors
+    // MARK: - Variables
 
     var showError: ((String) -> Void)?
     var airQualityInfo: Info?
     var updateUI: (() -> Void)?
     var latitude: Double?
     var longitude: Double?
-
-    // MARK: - Variables
-
     private let networkService = NetworkService()
     private var isFetchCompleted = false
-
-    // MARK: - Initialiser
 
     // MARK: - Helper Functions
 
@@ -90,5 +85,3 @@ class AirQualityViewModel {
         }
     }
 }
-
-// MARK: - Computed Properties

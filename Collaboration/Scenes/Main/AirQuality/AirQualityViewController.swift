@@ -45,7 +45,7 @@ class AirQualityViewController: UIViewController {
         return textField
     }()
 
-    let searchButton = CustomButton(title: "Search", backgroundColor: .label)
+    let searchButton = CustomButton(title: "Search", backgroundColor: .label, setTitleColor: .systemBackground)
 
     let pollutionLabel: UILabel = {
         let label = UILabel()
@@ -133,13 +133,8 @@ class AirQualityViewController: UIViewController {
         pollutionStatusLabel.text = ""
         viewModel.updateUI = { [weak self] in
             guard let self = self, let info = self.viewModel.airQualityInfo else { return }
-            print("City: \(info.data.city), State: \(info.data.state)")
-
             let pollution = info.data.current.pollution
-            let temperature = info.data.current.weather
-            print("Pollution: \(pollution.aqius)")
             self.pollutionLabel.text = "\(pollution.aqius)"
-            print("temperature: \(temperature.tp)")
             self.loadingIndicator.stopAnimating()
             self.updateBarIndicator(to: CGFloat(pollution.aqius))
         }
