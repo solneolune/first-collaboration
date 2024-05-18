@@ -10,12 +10,13 @@ import UIKit
 class CustomButton: UIButton {
 
     // Custom initializer
-    init(title: String, backgroundColor: UIColor, titleColor: UIColor, cornerRadius: CGFloat) {
+    init(title: String, backgroundColor: UIColor) {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
-        self.setTitleColor(titleColor, for: .normal)
-        self.layer.cornerRadius = cornerRadius
+        self.setTitleColor(.white, for: .normal)
+        self.layer.cornerRadius = 10
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -23,12 +24,9 @@ class CustomButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // Set additional properties
-    func configure(title: String, backgroundColor: UIColor, titleColor: UIColor, cornerRadius: CGFloat) {
+    // Method to update button title and background color
+    func update(title: String, backgroundColor: UIColor) {
         self.setTitle(title, for: .normal)
         self.backgroundColor = backgroundColor
-        self.setTitleColor(titleColor, for: .normal)
-        self.layer.cornerRadius = cornerRadius
     }
 }
-
