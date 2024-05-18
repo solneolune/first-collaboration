@@ -44,12 +44,12 @@ struct Location: Codable {
 }
 
 struct Coordinates: Codable {
-    let results: [Result1]
+    let results: [ResultGeometry]
 }
 
 // MARK: - Result
 
-struct Result1: Codable {
+struct ResultGeometry: Codable {
     let geometry: Geometry
 }
 

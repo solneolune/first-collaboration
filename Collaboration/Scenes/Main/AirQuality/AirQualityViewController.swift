@@ -178,7 +178,6 @@ class AirQualityViewController: UIViewController {
 
     func configureBarIndicator() {
         let width = view.frame.width
-        print(width)
         lineLayer.frame = CGRect(x: 25, y: 115, width: width - 50, height: 4)
         lineLayer.colors = [UIColor.green.cgColor, UIColor.red.cgColor]
         lineLayer.startPoint = CGPoint(x: 0, y: 0.5)
@@ -358,19 +357,21 @@ class AirQualityViewController: UIViewController {
             self.indicatorView.center.x = positionX
         }
 
-        if value < 50 {
+        switch value {
+        case ..<50:
             status = "Air quality in \(searchTextField.text ?? "") is good"
-        } else if value < 100 {
+        case 50 ..< 100:
             status = "Air quality in \(searchTextField.text ?? "") is moderate"
-        } else if value < 150 {
+        case 100 ..< 150:
             status = "Air quality in \(searchTextField.text ?? "") is unhealthy for sensitive groups"
-        } else if value < 200 {
+        case 150 ..< 200:
             status = "Air quality in \(searchTextField.text ?? "") is unhealthy"
-        } else if value < 300 {
+        case 200 ..< 300:
             status = "Air quality in \(searchTextField.text ?? "") is very unhealthy"
-        } else {
+        default:
             status = "Air quality in \(searchTextField.text ?? "") is hazardous"
         }
+
         pollutionStatusLabel.text = status
     }
 }
